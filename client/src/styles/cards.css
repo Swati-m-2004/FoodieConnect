@@ -1,0 +1,311 @@
+﻿/* Restaurant Card */
+.restaurant-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-normal);
+  text-decoration: none;
+  color: inherit;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  animation: fadeUp 0.5s var(--ease-spring) both;
+}
+
+.restaurant-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-xl);
+  border-color: rgba(255, 87, 34, 0.3);
+}
+
+.restaurant-card::after {
+  content: '';
+  position: absolute;
+  inset: auto 18px 0;
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+  background: var(--primary-gradient);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform var(--transition-normal);
+}
+
+.restaurant-card:hover::after { transform: scaleX(1); }
+
+.rest-img-wrapper {
+  position: relative;
+  width: 100%;
+  height: 190px;
+  overflow: hidden;
+  background-color: var(--bg-muted);
+}
+
+.rest-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.restaurant-card:hover .rest-img {
+  transform: scale(1.06);
+}
+
+.rest-badge-distance {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  background: rgba(15, 23, 42, 0.82);
+  backdrop-filter: blur(6px);
+  color: white;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.rest-badge-rating {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #10b981;
+  color: white;
+  padding: 4px 9px;
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: var(--shadow-sm);
+}
+
+.rest-status-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.rest-status-open {
+  background: rgba(16, 185, 129, 0.9);
+  color: white;
+}
+
+.rest-status-closed {
+  background: rgba(239, 68, 68, 0.9);
+  color: white;
+}
+
+.rest-card-body {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.rest-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 4px;
+}
+
+.rest-cuisines {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rest-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  border-top: 1px dashed var(--border);
+  font-size: 0.82rem;
+  color: var(--text-body);
+  font-weight: 600;
+}
+
+.rest-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Food Card */
+.food-card {
+  background: white;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  padding: 16px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  transition: all var(--transition-normal);
+  box-shadow: var(--shadow-xs);
+  animation: fadeUp 0.4s var(--ease-spring) both;
+}
+
+.food-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: var(--shadow-md);
+  transform: translateX(3px);
+}
+
+.food-info {
+  flex: 1;
+}
+
+.food-header-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.food-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.food-price {
+  font-size: 1.02rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+
+.food-desc {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.food-action-side {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 120px;
+  flex-shrink: 0;
+}
+
+.food-thumbnail {
+  width: 110px;
+  height: 95px;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  box-shadow: var(--shadow-xs);
+}
+
+.food-add-btn-wrap {
+  margin-top: -16px;
+  z-index: 2;
+}
+
+/* Stepper [-] qty [+] */
+.quantity-stepper {
+  display: flex;
+  align-items: center;
+  background: white;
+  border: 1.5px solid var(--primary);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  height: 34px;
+}
+
+.stepper-btn {
+  background: white;
+  border: none;
+  width: 32px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 1.1rem;
+  transition: background var(--transition-fast);
+}
+
+.stepper-btn:hover {
+  background-color: var(--primary-light);
+}
+
+.stepper-qty {
+  padding: 0 10px;
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: var(--primary);
+  min-width: 28px;
+  text-align: center;
+}
+
+/* Filter Pills */
+.filter-pills-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scrollbar-width: thin;
+}
+
+.filter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  background: white;
+  border: 1.5px solid var(--border);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-body);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+}
+
+.filter-pill:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.filter-pill.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+  box-shadow: var(--shadow-primary);
+}
+
+@media (max-width: 560px) {
+  .rest-img-wrapper { height: 165px; }
+  .food-card { align-items: flex-start; padding: 12px; gap: 10px; }
+  .food-action-side { width: 92px; }
+  .food-thumbnail { width: 88px; height: 78px; }
+  .food-name { font-size: 0.96rem; }
+}

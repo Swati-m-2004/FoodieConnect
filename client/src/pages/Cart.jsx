@@ -1,0 +1,13 @@
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { ArrowLeft, ArrowRight, Minus, Plus, ShoppingBag, Trash2 } from 'lucide-react';
+import { useCart } from '../context/CartContext';
+
+const Cart = () => {
+  const navigate = useNavigate();
+  const { cartItems, restaurant, updateQuantity, removeFromCart, clearCart, subtotal, deliveryFee, tax, totalAmount } = useCart();
+  if (!cartItems.length) return <div className="container page-wrapper"><div className="empty-state cart-empty"><div className="empty-state-icon"><ShoppingBag size={48} /></div><h3>Your cart is waiting</h3><p>Add a dish from a restaurant that delivers to your location.</p><Link to="/" className="btn btn-primary">Browse restaurants <ArrowRight size={16} /></Link></div></div>;
+  return <div className="container page-wrapper"><Link to="/" className="back-link"><ArrowLeft size={16} /> Continue browsing</Link><div className="checkout-layout"><section><div className="section-heading"><div><span className="eyebrow">Your order</span><h1>{restaurant?.name}</h1></div><button className="text-button danger-text" onClick={clearCart}><Trash2 size={15} /> Clear cart</button></div><div className="cart-list">{cartItems.map((item) => <article className="cart-line" key={item.foodId}><img src={item.image || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&auto=format&fit=crop&q=60'} alt="" /><div className="cart-line-info"><h3>{item.name}</h3><span>₹{item.price} each</span></div><div className="quantity-stepper"><button className="stepper-btn" onClick={() => updateQuantity(item.foodId, -1)}><Minus size={14} /></button><b>{item.quantity}</b><button className="stepper-btn" onClick={() => updateQuantity(item.foodId, 1)}><Plus size={14} /></button></div><strong>₹{item.price * item.quantity}</strong></article>)}</div></section><aside className="summary-card"><div className="summary-heading"><h2>Bill details</h2><span>{cartItems.length} items</span></div><div className="summary-row"><span>Item total</span><b>₹{subtotal.toFixed(2)}</b></div><div className="summary-row"><span>Delivery fee</span><b>₹{deliveryFee.toFixed(2)}</b></div><div className="summary-row"><span>GST (5%)</span><b>₹{tax.toFixed(2)}</b></div><div className="summary-total"><span>To pay</span><strong>₹{totalAmount.toFixed(2)}</strong></div><button className="btn btn-primary btn-full btn-lg" onClick={() => navigate('/checkout')}>Proceed to checkout <ArrowRight size={17} /></button><p className="summary-note">Prices are rechecked securely when your order is placed.</p></aside></div></div>;
+};
+
+export default Cart;

@@ -1,0 +1,12 @@
+import React, { useState } from 'react';
+import { Home, MapPin, Plus, Trash2 } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
+import { useLocation } from '../context/LocationContext';
+
+const Profile = () => {
+  const { user, addAddress, deleteAddress } = useAuth(); const { selectedLocation } = useLocation(); const [label, setLabel] = useState('Home'); const [busy, setBusy] = useState(false); const addresses = user?.addresses || [];
+  const save = async (event) => { event.preventDefault(); setBusy(true); try { await addAddress({ label, area: selectedLocation.area, city: selectedLocation.city, state: 'Karnataka', pincode: selectedLocation.pincode, coordinates: selectedLocation.coordinates, isDefault: addresses.length === 0 }); } finally { setBusy(false); } };
+  return <div className="container page-wrapper"><div className="section-heading"><div><span className="eyebrow">Account</span><h1>Saved addresses</h1></div><span className="profile-greeting">{user?.name}</span></div><div className="profile-layout"><section className="card"><div className="card-title-row"><h2><MapPin size={19} /> Your places</h2><span className="badge badge-info">{addresses.length} saved</span></div>{addresses.length ? <div className="address-list">{addresses.map((address) => <div className="address-card" key={address._id}><div className="address-icon"><Home size={17} /></div><div><strong>{address.label}</strong><span>{address.fullAddress}</span></div><button className="icon-button danger-text" onClick={() => deleteAddress(address._id)} title="Remove address"><Trash2 size={16} /></button></div>)}</div> : <p className="muted-copy">No saved addresses yet. Add the location currently selected in the app.</p>}</section><section className="card"><div className="card-title-row"><h2><Plus size={19} /> Save current location</h2></div><p className="muted-copy">{selectedLocation.fullAddress}</p><form onSubmit={save}><label className="form-group"><span className="form-label">Address label</span><select className="form-select" value={label} onChange={(e) => setLabel(e.target.value)}><option>Home</option><option>Office</option><option>College</option><option>Other</option></select></label><button className="btn btn-primary btn-full" disabled={busy}>{busy ? 'Saving...' : 'Save address'}</button></form></section></div></div>;
+};
+
+export default Profile;

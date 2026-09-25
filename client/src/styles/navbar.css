@@ -1,0 +1,312 @@
+﻿.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04);
+  transition: all var(--transition-normal);
+  animation: fadeIn 0.35s ease both;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 74px;
+  gap: 20px;
+}
+
+/* Brand */
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--text-main);
+  text-decoration: none;
+  letter-spacing: -0.5px;
+  flex-shrink: 0;
+}
+
+.brand-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background: var(--primary-gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: var(--shadow-primary);
+  transition: transform var(--transition-normal);
+}
+
+.nav-brand:hover .brand-icon {
+  transform: rotate(-8deg) scale(1.05);
+}
+
+.brand-accent {
+  color: var(--primary);
+}
+
+/* Location Selector Pill in Navbar */
+.location-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--bg-muted);
+  border: 1px solid var(--border);
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  max-width: 360px;
+}
+
+.location-pill:hover {
+  background-color: var(--primary-light);
+  border-color: rgba(255, 87, 34, 0.3);
+  transform: translateY(-1px);
+}
+
+.loc-pin-icon {
+  color: var(--primary);
+  flex-shrink: 0;
+  animation: pulseGlow 2s infinite;
+}
+
+.loc-text-wrap {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  text-align: left;
+}
+
+.loc-label {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+}
+
+.loc-val {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.loc-change-btn {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--primary);
+  padding: 3px 8px;
+  background: white;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(255, 87, 34, 0.2);
+  flex-shrink: 0;
+  box-shadow: var(--shadow-xs);
+}
+
+/* Nav Actions */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.cart-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border-radius: var(--radius-md);
+  background: white;
+  border: 1.5px solid var(--border);
+  color: var(--text-main);
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all var(--transition-normal);
+}
+
+.cart-button:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: var(--primary-light);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.cart-badge {
+  background: var(--primary);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 800;
+  min-width: 20px;
+  height: 20px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+  animation: scaleIn 0.25s var(--ease-spring) both;
+}
+
+/* User Menu & Role link */
+.user-menu-wrap {
+  position: relative;
+}
+
+.user-profile-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--text-main);
+  transition: all var(--transition-fast);
+}
+
+.user-profile-btn:hover {
+  border-color: var(--primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--primary-gradient);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.role-badge-nav {
+  font-size: 0.68rem;
+  padding: 2px 6px;
+  background: var(--primary-light);
+  color: var(--primary);
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 220px;
+  background: white;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-xl);
+  padding: 8px 0;
+  z-index: 1100;
+  transform-origin: top right;
+  animation: scaleIn 0.22s var(--ease-spring) both;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  font-size: 0.9rem;
+  color: var(--text-body);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: var(--bg-muted);
+  color: var(--primary);
+}
+
+.dropdown-divider {
+  height: 1px;
+  background-color: var(--border);
+  margin: 6px 0;
+}
+
+/* Mobile Toggle */
+.mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  color: var(--text-main);
+}
+
+/* Mobile Drawer */
+.mobile-drawer {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .location-pill {
+    display: none; /* Shown in secondary bar or drawer */
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-toggle {
+    display: flex;
+  }
+  .nav-actions .user-menu-wrap,
+  .nav-actions .btn-login-header {
+    display: none;
+  }
+  .mobile-drawer {
+    display: block;
+    position: fixed;
+    top: 74px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: white;
+    z-index: 999;
+    padding: 20px;
+    overflow-y: auto;
+    animation: fadeIn 0.2s ease;
+  }
+
+  .mobile-drawer-content a,
+  .mobile-drawer-content button {
+    min-height: 44px;
+  }
+  .mobile-drawer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-container { gap: 8px; }
+  .nav-brand { font-size: 1.08rem; gap: 7px; }
+  .brand-icon { width: 34px; height: 34px; }
+  .brand-icon svg { width: 18px; height: 18px; }
+  .nav-actions { gap: 6px; }
+  .cart-button { padding: 8px 10px; }
+  .cart-button span:not(.cart-badge) { display: none; }
+  .mobile-toggle { padding: 4px; }
+}
